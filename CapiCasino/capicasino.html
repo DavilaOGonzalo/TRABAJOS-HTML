@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CapiCasino - Ruleta Capibara</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #8B4513 0%, #D2691E 50%, #8B4513 100%);
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        .header {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+            background: linear-gradient(to right, #FFD700, #FFA500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header .subtitle {
+            font-size: 1.2rem;
+            color: #DEB887;
+            margin-top: 5px;
+        }
+
+        .balance-bar {
+            background: linear-gradient(to right, #2c1810, #4a2a1a);
+            padding: 15px 30px;
+            border-radius: 50px;
+            margin: 10px 0 20px;
+            display: flex;
+            gap: 30px;
+            border: 2px solid #FFD700;
+        }
+
+        .balance-bar span {
+            font-size: 1.1rem;
+        }
+
+        .balance-bar .amount {
+            color: #FFD700;
+            font-weight: bold;
+        }
+
+        .main-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+            padding: 20px;
+            max-width: 1200px;
+        }
+
+        .wheel-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .wheel-container {
+            position: relative;
+            width: 320px;
+            height: 320px;
+        }
+
+        .wheel {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            position: relative;
+            transition: transform 4s cubic-bezier(0.17, 0.67, 0.12, 0.99);
+            border: 8px solid #8B4513;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5), inset 0 0 30px rgba(0,0,0,0.3);
+        }
+
+        .wheel canvas {
+            width: 100%;
+            height: 100%;
+        }
+
+        .pointer {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 40px;
+            background: #FFD700;
+            clip-path: polygon(50% 100%, 0 0, 100% 0);
+            z-index: 10;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+        }
+
+        .result-display {
+            margin-top: 20px;
+            padding: 15px 25px;
+            background: linear-gradient(to right, #2c1810, #4a2a1a);
+            border-radius: 15px;
+            border: 2px solid #FFD700;
+            font-size: 1.3rem;
+            min-width: 200px;
+            text-align: center;
+        }
+
+        .bet-section {
+            background: linear-gradient(to bottom, #2c1810, #1a0f0a);
+            padding: 25px;
+            border-radius: 20px;
+            border: 3px solid #FFD700;
+            min-width: 350px;
+        }
+
+        .bet-section h2 {
+            text-align: center;
+            color: #FFD700;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .bet-type {
+            margin-bottom: 20px;
+        }
+
+        .bet-type h3 {
+            color: #DEB887;
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+
+        .bet-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .bet-btn {
+            padding: 10px 15px;
+            border: 2px solid #8B4513;
+            background: linear-gradient(to bottom, #4a2a1a, #2c1810);
+            color: #fff;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .bet-btn:hover {
+            background: linear-gradient(to bottom, #5a3a2a, #3c2820);
+            transform: scale(1.05);
+        }
+
+        .bet-btn.selected {
+            border-color: #FFD700;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+
+        .bet-btn.red { background: linear-gradient(to bottom, #dc3545, #a71d2a); }
+        .bet-btn.black { background: linear-gradient(to bottom, #333, #111); }
+        .bet-btn.green { background: linear-gradient(to bottom, #28a745, #1e7e34); }
+
+        .chip-section {
+            margin-bottom: 20px;
+        }
+
+        .chip-section h3 {
+            color: #DEB887;
+            margin-bottom: 10px;
+        }
+
+        .chips {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .chip {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            cursor: pointer;
+            border: 3px dashed #fff;
+            transition: all 0.2s;
+            font-size: 0.85rem;
+        }
+
+        .chip:hover { transform: scale(1.1); }
+        .chip.selected { transform: scale(1.15); box-shadow: 0 0 15px rgba(255, 215, 0, 0.8); }
+
+        .chip-10 { background: radial-gradient(circle, #2196F3, #0d47a1); }
+        .chip-25 { background: radial-gradient(circle, #4CAF50, #1b5e20); }
+        .chip-50 { background: radial-gradient(circle, #FF9800, #e65100); }
+        .chip-100 { background: radial-gradient(circle, #9C27B0, #4a148c); }
+        .chip-500 { background: radial-gradient(circle, #f44336, #b71c1c); }
+
+        .spin-btn {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            background: linear-gradient(to right, #FFD700, #FFA500);
+            color: #2c1810;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
+        }
+
+        .spin-btn:hover { transform: scale(1.02); box-shadow: 0 5px 15px rgba(255, 215, 0, 0.5); }
+        .spin-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+        .current-bet {
+            text-align: center;
+            margin: 15px 0;
+            padding: 10px;
+            background: rgba(255, 215, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        .capibara-deco {
+            font-size: 4rem;
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        .history {
+            margin-top: 15px;
+            display: flex;
+            gap: 5px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .history-num {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+            border: 2px solid #FFD700;
+        }
+
+        .history-num.red { background: #dc3545; }
+        .history-num.black { background: #333; }
+        .history-num.green { background: #28a745; }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .win-animation { animation: pulse 0.5s ease-in-out 3; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>CapiCasino</h1>
+        <div class="subtitle">La suerte del capibara te acompaña</div>
+    </div>
+
+    <div class="balance-bar">
+        <span>Saldo: <span class="amount" id="balance">$1000</span></span>
+        <span>Apuesta: <span class="amount" id="currentBet">$0</span></span>
+    </div>
+
+    <div class="main-container">
+        <div class="wheel-section">
+            <div class="capibara-deco">🦫</div>
+            <div class="wheel-container">
+                <div class="pointer"></div>
+                <div class="wheel" id="wheel">
+                    <canvas id="wheelCanvas" width="304" height="304"></canvas>
+                </div>
+            </div>
+            <div class="result-display" id="result">¡Haz tu apuesta!</div>
+            <div class="history" id="history"></div>
+        </div>
+
+        <div class="bet-section">
+            <h2>Apuestas</h2>
+
+            <div class="chip-section">
+                <h3>Valor de ficha</h3>
+                <div class="chips">
+                    <div class="chip chip-10" data-value="10">$10</div>
+                    <div class="chip chip-25" data-value="25">$25</div>
+                    <div class="chip chip-50" data-value="50">$50</div>
+                    <div class="chip chip-100" data-value="100">$100</div>
+                    <div class="chip chip-500" data-value="500">$500</div>
+                </div>
+            </div>
+
+            <div class="bet-type">
+                <h3>Color</h3>
+                <div class="bet-options">
+                    <button class="bet-btn red" data-bet="red">Rojo (x2)</button>
+                    <button class="bet-btn black" data-bet="black">Negro (x2)</button>
+                    <button class="bet-btn green" data-bet="green">Verde (x14)</button>
+                </div>
+            </div>
+
+            <div class="bet-type">
+                <h3>Par / Impar</h3>
+                <div class="bet-options">
+                    <button class="bet-btn" data-bet="even">Par (x2)</button>
+                    <button class="bet-btn" data-bet="odd">Impar (x2)</button>
+                </div>
+            </div>
+
+            <div class="bet-type">
+                <h3>Rango</h3>
+                <div class="bet-options">
+                    <button class="bet-btn" data-bet="1-18">1-18 (x2)</button>
+                    <button class="bet-btn" data-bet="19-36">19-36 (x2)</button>
+                </div>
+            </div>
+
+            <div class="bet-type">
+                <h3>Número exacto (x36)</h3>
+                <div class="bet-options" id="numberBets"></div>
+            </div>
+
+            <div class="current-bet">
+                Apuesta actual: <strong id="betDisplay">Ninguna</strong>
+            </div>
+
+            <button class="spin-btn" id="spinBtn" disabled>GIRAR RULETA</button>
+        </div>
+    </div>
+
+    <script>
+        const redNumbers = [1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36];
+        const blackNumbers = [2, 4, 6, 8, 10, 11, 13, 15, 17, 20, 22, 24, 26, 28, 29, 31, 33, 35];
+        const wheelOrder = [0, 32, 15, 19, 4, 21, 2, 25, 17, 34, 6, 27, 13, 36, 11, 30, 8, 23, 10, 5, 24, 16, 33, 1, 20, 14, 31, 9, 22, 18, 29, 7, 28, 12, 35, 3, 26];
+
+        let balance = 1000;
+        let selectedChip = 25;
+        let currentBet = null;
+        let betAmount = 0;
+        let spinning = false;
+        let currentRotation = 0;
+
+        const canvas = document.getElementById('wheelCanvas');
+        const ctx = canvas.getContext('2d');
+        const wheel = document.getElementById('wheel');
+
+        function getNumberColor(num) {
+            if (num === 0) return 'green';
+            return redNumbers.includes(num) ? 'red' : 'black';
+        }
+
+        function drawWheel() {
+            const centerX = canvas.width / 2;
+            const centerY = canvas.height / 2;
+            const radius = canvas.width / 2;
+            const arc = (2 * Math.PI) / wheelOrder.length;
+
+            for (let i = 0; i < wheelOrder.length; i++) {
+                const angle = i * arc;
+                const num = wheelOrder[i];
+                const color = getNumberColor(num);
+
+                ctx.beginPath();
+                ctx.moveTo(centerX, centerY);
+                ctx.arc(centerX, centerY, radius, angle, angle + arc);
+                ctx.fillStyle = color === 'red' ? '#dc3545' : color === 'black' ? '#333' : '#28a745';
+                ctx.fill();
+                ctx.stroke();
+
+                ctx.save();
+                ctx.translate(centerX, centerY);
+                ctx.rotate(angle + arc / 2);
+                ctx.textAlign = 'right';
+                ctx.fillStyle = '#fff';
+                ctx.font = 'bold 12px Arial';
+                ctx.fillText(num.toString(), radius - 15, 5);
+                ctx.restore();
+            }
+
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, 40, 0, 2 * Math.PI);
+            ctx.fillStyle = '#8B4513';
+            ctx.fill();
+            ctx.strokeStyle = '#FFD700';
+            ctx.lineWidth = 3;
+            ctx.stroke();
+
+            ctx.fillStyle = '#FFD700';
+            ctx.font = 'bold 20px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('🦫', centerX, centerY + 7);
+        }
+
+        function createNumberBets() {
+            const container = document.getElementById('numberBets');
+            for (let i = 0; i <= 36; i++) {
+                const btn = document.createElement('button');
+                btn.className = `bet-btn ${getNumberColor(i)}`;
+                btn.textContent = i;
+                btn.dataset.bet = 'number-' + i;
+                container.appendChild(btn);
+            }
+        }
+
+        document.querySelectorAll('.chip').forEach(chip => {
+            chip.addEventListener('click', () => {
+                document.querySelectorAll('.chip').forEach(c => c.classList.remove('selected'));
+                chip.classList.add('selected');
+                selectedChip = parseInt(chip.dataset.value);
+            });
+        });
+
+        document.querySelectorAll('.bet-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                if (spinning) return;
+                document.querySelectorAll('.bet-btn').forEach(b => b.classList.remove('selected'));
+                btn.classList.add('selected');
+
+                const newBet = btn.dataset.bet;
+                if (newBet === currentBet) {
+                    betAmount += selectedChip;
+                } else {
+                    betAmount = selectedChip;
+                }
+                if (betAmount > balance) betAmount = balance;
+
+                currentBet = newBet;
+                document.getElementById('currentBet').textContent = `$${betAmount}`;
+                document.getElementById('betDisplay').textContent = `${currentBet} - $${betAmount}`;
+                document.getElementById('spinBtn').disabled = betAmount === 0;
+            });
+        });
+
+        document.getElementById('spinBtn').addEventListener('click', spin);
+
+        function spin() {
+            if (spinning || betAmount === 0) return;
+            spinning = true;
+
+            document.getElementById('spinBtn').disabled = true;
+            document.getElementById('result').textContent = 'Girando...';
+
+            const randomIndex = Math.floor(Math.random() * wheelOrder.length);
+            const winningNumber = wheelOrder[randomIndex];
+            const segmentAngle = 360 / wheelOrder.length;
+            const centerAngle = randomIndex * segmentAngle + segmentAngle / 2;
+            const targetAngle = 270 - centerAngle;
+            const fullSpins = 5 + Math.floor(Math.random() * 3);
+            const currentMod = currentRotation % 360;
+            let delta = targetAngle - currentMod;
+            if (delta < 0) delta += 360;
+            const finalAngle = currentRotation + fullSpins * 360 + delta;
+
+            wheel.style.transform = `rotate(${finalAngle}deg)`;
+            currentRotation = finalAngle;
+
+            setTimeout(() => {
+                balance -= betAmount;
+                const result = processResult(winningNumber);
+                updateBalance();
+                document.getElementById('result').textContent = result;
+                addToHistory(winningNumber);
+
+                if (result.includes('Ganaste')) {
+                    document.getElementById('result').classList.add('win-animation');
+                    setTimeout(() => document.getElementById('result').classList.remove('win-animation'), 1500);
+                }
+
+                spinning = false;
+                document.getElementById('spinBtn').disabled = false;
+            }, 4200);
+        }
+
+        function processResult(number) {
+            const color = getNumberColor(number);
+            let won = false;
+            let multiplier = 0;
+
+            if (currentBet === 'red' && color === 'red') { won = true; multiplier = 2; }
+            else if (currentBet === 'black' && color === 'black') { won = true; multiplier = 2; }
+            else if (currentBet === 'green' && color === 'green') { won = true; multiplier = 14; }
+            else if (currentBet === 'even' && number !== 0 && number % 2 === 0) { won = true; multiplier = 2; }
+            else if (currentBet === 'odd' && number % 2 === 1) { won = true; multiplier = 2; }
+            else if (currentBet === '1-18' && number >= 1 && number <= 18) { won = true; multiplier = 2; }
+            else if (currentBet === '19-36' && number >= 19 && number <= 36) { won = true; multiplier = 2; }
+            else if (currentBet.startsWith('number-') && parseInt(currentBet.split('-')[1]) === number) { won = true; multiplier = 36; }
+
+            if (won) {
+                const winnings = betAmount * multiplier;
+                balance += winnings;
+                return `Salió ${number} ${color} - Ganaste $${winnings}!`;
+            } else {
+                return `Salió ${number} ${color} - Perdiste $${betAmount}`;
+            }
+        }
+
+        function updateBalance() {
+            document.getElementById('balance').textContent = `$${balance}`;
+            if (balance <= 0) {
+                setTimeout(() => {
+                    alert('Te quedaste sin fichas! Recargando $1000...');
+                    balance = 1000;
+                    updateBalance();
+                }, 500);
+            }
+        }
+
+        function addToHistory(number) {
+            const history = document.getElementById('history');
+            const color = getNumberColor(number);
+            const span = document.createElement('span');
+            span.className = `history-num ${color}`;
+            span.textContent = number;
+            history.insertBefore(span, history.firstChild);
+
+            while (history.children.length > 10) {
+                history.removeChild(history.lastChild);
+            }
+        }
+
+        drawWheel();
+        createNumberBets();
+        document.querySelector('.chip-25').classList.add('selected');
+    </script>
+</body>
+</html>

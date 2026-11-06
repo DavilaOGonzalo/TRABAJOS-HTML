@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Te damos la bienvenida al sitio oficial de Minecraft | Minecraft</title>
+
+    <style>
+        html,
+        body {
+            margin: 0;
+            background-color: rgb(255, 255, 255);
+        }
+
+        /*--------------------------------------------------------*/
+        .header {
+            width: 100%;
+            height: 85px;
+            background-color: rgba(0, 0, 0, 0.223);
+
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: flex;
+            z-index: 1000;
+        }
+
+        /*MESA DE TRABAJO*/
+        .f1 {
+            width: 100%;
+            height: 79px;
+
+            background-color: rgba(38, 37, 35, 0.91);
+            border-bottom: 1px solid black;
+
+            display: flex;
+            align-items: center;
+        }
+
+        /*GRUPO 1*/
+        .hc1 {
+            width: 370px;
+            height: 50px;
+            background-color: rgba(38, 37, 35, 0);
+
+            margin-left: 8px;
+
+            display: flex;
+            align-items: center;
+
+        }
+
+        .logomc {
+            width: 230px;
+            height: 40px;
+            background-color: rgba(38, 37, 35, 0);
+
+            margin-left: 52px;
+
+        }
+
+        .mc-img2 {
+            width: auto;
+            height: 37.5px;
+
+            margin-top: 1px;
+
+        }
+
+        /*GRUPO 2*/
+        .hc2 {
+            width: 720px;
+            height: 50px;
+            background-color: rgba(38, 37, 35, 0);
+
+            margin-left: 8px;
+
+            display: flex;
+            align-items: center;
+
+            box-sizing: border-box;
+            padding-left: 155px;
+
+            gap: 18px;
+
+        }
+
+        .doors {
+            width: 80px;
+            height: 37.5px;
+
+            background-color: rgba(38, 37, 35, 0);
+
+            display: flex;
+            align-items: center;
+        }
+
+        .texto-d {
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: 700;
+            color: white;
+            font-size: 12px;
+
+            cursor: pointer;
+        }
+
+        .texto-d:hover {
+            color: rgb(80, 177, 35);
+        }
+
+        /*GRUPO 3*/
+        .hc3 {
+            width: 150px;
+            height: 50px;
+            background-color: rgba(38, 37, 35, 0);
+
+            margin-left: 8px;
+
+            display: flex;
+            align-items: center;
+
+            box-sizing: border-box;
+            padding-left: 38px;
+        }
+
+        .buy {
+            width: 100px;
+            height: 30px;
+            background-color: rgba(38, 37, 35, 0);
+
+            display: flex;
+            align-items: center;
+            border: 2px solid rgb(80, 177, 35);
+        }
+
+        .buy:hover {
+            background-color: rgba(214, 255, 207, 0.256);
+        }
+
+        .texto-b {
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: 600;
+            font-size: 12px;
+            color: rgb(80, 177, 35);
+
+            margin-left: 12px;
+        }
+
+        /*GRUPO 4*/
+        .hc4 {
+            width: 60px;
+            height: 50px;
+            background-color: rgba(38, 37, 35, 0);
+
+            margin-left: 8px;
+        }
+
+        /*GRUPO 5*/
+        .hc5 {
+            width: 160px;
+            height: 50px;
+            background-color: rgba(38, 37, 35, 0);
+
+            margin-left: 8px;
+
+            display: flex;
+            align-items: center;
+        }
+
+        .account {
+            width: 105px;
+            height: 30px;
+            background-color: rgba(38, 37, 35, 0);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .texto-a {
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: 600;
+            font-size: 12px;
+            color: rgb(255, 255, 255);
+        }
+
+        /*--------------------------------------------------------*/
+        .img1 {
+            width: 100%;
+            height: 700px;
+
+            background-color: rgb(35, 172, 1);
+
+            border-bottom: 4px solid rgb(58, 58, 58);
+            overflow: hidden;
+
+            padding-top: 30px;
+        }
+
+        .mc-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: scale(1.27);
+        }
+
+        /*--------------------------------------------------------*/
+        .modos {
+            width: 100%;
+            height: 870px;
+
+            background-color: rgb(22, 22, 22);
+
+            display: flex;
+        }
+
+        .mod-p1 {
+            width: 120px;
+            height: 80px;
+            background-color: rgb(255, 255, 255);
+
+            margin-left: 850px;
+            margin-top: 30px;
+        }
+
+        .mod-p {
+            width: 120px;
+            height: 80px;
+            background-color: rgb(255, 255, 255);
+
+            margin-left: 30px;
+            margin-top: 30px;
+        }
+
+        .box-textual{
+            width: 100%;
+            height: 200px;
+            background-color: rgba(8, 41, 30, 0);
+
+            position: absolute;
+            margin-top: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        .tm1 {
+            color: white;
+            font-size: 50px;
+            height: 120px;
+            font-family: monospace;
+            font-weight: 900;
+            background-color: rgba(249, 141, 1, 0);
+        }
+
+        .tm2 {
+            color: rgb(35, 172, 1);
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            background-color: rgba(255, 255, 255, 0);
+        }
+
+
+        .promocion {
+            width: 575px;
+            height: 300px;
+
+            background-color: rgb(22, 22, 22);
+
+            position: absolute;
+            top: 590px;
+            left: 240px;
+            z-index: 999;
+
+            display: flex;
+            flex-direction: column;
+
+            box-sizing: border-box;
+            padding-left: 40px;
+            padding-top: 40px;
+        }
+
+        .titulo {
+            color: white;
+            font-size: 25px;
+            font-family: monospace;
+            font-weight: 700;
+
+            background-color: rgba(0, 0, 0, 0);
+            height: 56px;
+
+        }
+
+        .oracion {
+            color: rgb(198, 198, 198);
+            font-size: 15px;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+
+        .down {
+            width: 230px;
+            height: 40px;
+            background-color: rgb(24, 129, 45);
+
+            margin-top: 10px;
+
+            display: flex;
+            align-items: center;
+
+            border-top: 10px solid rgb(29, 150, 53);
+            border-bottom: 10px solid rgb(20, 95, 35);
+        }
+
+        .down:hover {
+            background-color: rgb(24, 114, 42);
+        }
+
+        .t-down {
+            color: white;
+            margin-left: 30px;
+
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-weight: 700;
+        }
+
+        .sombras-prom {
+            width: 575px;
+            height: 300px;
+
+            background-color: rgba(172, 70, 70, 0);
+
+            position: absolute;
+            top: 290px;
+            left: 240px;
+            z-index: 999;
+
+            border-bottom: 4px solid rgb(58, 58, 58);
+        }
+
+        .sp1 {
+            width: 49px;
+            height: 45px;
+            background-color: rgb(22, 22, 22);
+
+            position: absolute;
+            top: 255px;
+            left: 477px;
+            z-index: 1000;
+
+            border-top: 4px solid rgb(58, 58, 58);
+        }
+
+        .sp2 {
+            width: 49px;
+            height: 45px;
+            background-color: rgb(22, 22, 22);
+
+            position: absolute;
+            top: 206px;
+            left: 526px;
+            z-index: 1000;
+
+            border-top: 4px solid rgb(58, 58, 58);
+        }
+
+        .sp3 {
+            width: 49px;
+            height: 45px;
+            background-color: rgb(22, 22, 22);
+
+            position: absolute;
+            top: 255px;
+            left: 378px;
+            z-index: 1000;
+
+            border-top: 4px solid rgb(58, 58, 58);
+        }
+
+        .juegos-1{
+            width: 100%;
+            height: 350px;
+
+            background-color:rgba(249, 90, 90, 0);
+
+            position: absolute;
+
+            margin-top: 330px;
+
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+        }
+        .j4{
+            width: 330px;
+            height: 330px;
+
+            background-color: rgb(250, 232, 206);
+            margin-top: 20px;
+
+            display: flex;
+            
+        }
+        .juegos-2{
+            width: 100%;
+            height: 120px;
+
+            background-color:rgba(255, 185, 185, 0);
+
+            position: absolute;
+
+            margin-top: 680px;
+
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+
+            
+        }
+        .t4{
+            width: 330px;
+            height: 110px;
+
+            background-color: rgba(237, 168, 72, 0);
+            
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+            padding-top: 20px;
+            gap: 20px;
+
+            border-bottom: 3px solid rgb(33, 33, 33);
+        }
+        .juegos-3{
+            width: 100%;
+            height: 40px;
+
+            background-color:rgba(240, 51, 51, 0);
+
+            position: absolute;
+
+            margin-top: 790px;
+
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+        }
+        .cl4{
+            width: 330px;
+            height: 40px;
+
+            background-color: rgba(255, 169, 71, 0);
+        }
+        .p1{
+            color: rgb(255, 255, 255);
+            font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: 30px;
+            font-weight: 550;
+
+            width: 100%;
+            height: 20px;
+            
+            background-color: rgba(0, 0, 0, 0);
+
+            display: flex;
+        }
+        .p2{
+            color: rgb(191, 191, 191);
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 13px;
+
+            width: 100%;
+            height: 20px;
+
+            background-color: rgba(0, 0, 0, 0);
+        }
+        .complementos{
+            width: 100%;
+            height: 700px;
+            background-color: rgb(41, 41, 41);
+        }
+    </style>
+
+    <script> const box = document.querySelector('.mod-p1');
+        box.addEventListener('click', () => {
+            box.style.borderColor = 'green';
+        }); 
+    </script>
+</head>
+
+<body>
+    <div class="header">
+        <div class="f1">
+            <div class="hc1">
+                <div class="logomc">
+                    <img src="mc2.svg" alt="mc-img" class="mc-img2">
+                </div>
+            </div>
+            <div class="hc2">
+                <div class="doors">
+                    <div class="texto-d">
+                        <p>GAMES</p>
+                    </div>
+                    <div class="pix-d"></div>
+                </div>
+                <div class="doors">
+                    <div class="texto-d">
+                        <p>SHOP</p>
+                    </div>
+                    <div class="pix-d"></div>
+                </div>
+                <div class="doors">
+                    <div class="texto-d">
+                        <p>NEWS</p>
+                    </div>
+                    <div class="pix-d"></div>
+                </div>
+                <div class="doors">
+                    <div class="texto-d">
+                        <p>SUPPORT</p>
+                    </div>
+                    <div class="pix-d"></div>
+                </div>
+            </div>
+            <div class="hc3">
+                <div class="buy">
+                    <div class="texto-b">
+                        <p>BUY NOW</p>
+                    </div>
+                    <div class="pix-b"></div>
+                </div>
+            </div>
+            <div class="hc4">
+                <div class="search">
+                    <div class="pix-s"></div>
+                    <div class="pix-s"></div>
+                </div>
+            </div>
+            <div class="hc5">
+                <div class="account">
+                    <div class="pix-a"></div>
+                    <div class="texto-a">
+                        <p>ACCOUNT</p>
+                    </div>
+                    <div class="pix-a"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="img1">
+        <img src="st-mc.webp" alt="mc-img" class="mc-img">
+    </div>
+    <div class="modos">
+        <div class="mod-p1"></div>
+        <div class="mod-p"></div>
+        <div class="mod-p"></div>
+        <div class="box-textual">
+            <div class="tm1">
+                <p>DESCUBRE NUESTROS JUEGOS</p>
+            </div>
+            <div>
+                <a href="#" class="tm2">Consigue los 3 juegos de Minecraft con el Triple Bundle></a> 
+            </div>
+        </div>
+        <div class="juegos-1">
+            <div class="j4">
+                <img src="mc1-1.jpg" alt="mc-img">
+            </div>
+            <div class="j4">
+                <img src="mc1-2.webp" alt="mc-img">
+            </div>
+            <div class="j4">
+                <img src="mc1-3.webp" alt="mc-img">
+            </div>
+            <div class="j4">
+                <img src="mc1-4.avif" alt="mc-img">
+            </div>  
+        </div>
+        <div class="juegos-2">
+            <div class="t4">
+                <div class="p1">
+                    Minecraft
+                </div>
+                <div class="p2">
+                    Sandbox de supervivencia, aventura <br>  Un solo jugador + multijugador
+                </div>
+            </div>
+            <div class="t4">
+                <div class="p1">
+                    Minecraft Dungeons
+                </div>
+                <div class="p2">
+                    Exploración de mazmorras, RPG de acción <br>  Un solo jugador + multijugador
+                </div>
+            </div>
+            <div class="t4">
+                <div class="p1">
+                    Minecraft Legends
+                </div>
+                <div class="p2">
+                    RPG de acción, estrategia <br>  Un solo jugador + multijugador
+                </div>
+            </div>
+            <div class="t4">
+                <div class="p1">
+                    Minecraft Education
+                </div>
+                <div class="p2">
+                    Educación, sandbox de supervivencia, aventura <br>  Un solo jugador + multijugador
+                </div>
+            </div>
+        </div>
+        <div class="juegos-3">
+            <div class="cl4"></div>
+            <div class="cl4"></div>
+            <div class="cl4"></div>
+            <div class="cl4"></div>
+        </div>
+    </div>
+
+
+    <div class="promocion">
+        <div class="titulo">
+            <p>Stranger Things DLC</p>
+        </div>
+        <div class="oracion">
+            <p>Explore Hawkins solo or team up with friends like <br> never before. Don’t forget to claim your free
+                Hellfire <br> Club T-shirt in the Dressing Room!</p>
+        </div>
+        <div class="down">
+            <div class="t-down">
+                <p>DOWNLOAD DLC</p>
+            </div>
+            <div class="pix-down"></div>
+        </div>
+    </div>
+    <div class="sombras-prom">
+        <div class="sp1"></div>
+        <div class="sp2"></div>
+        <div class="sp3"></div>
+    </div>
+    <div class="complementos"></div>
+</body>
+
+</html>

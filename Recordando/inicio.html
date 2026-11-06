@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recordando</title>
+
+    <style>
+        ul{
+            list-style-type:none;
+            width:200px;
+            background-color:rgb(0, 0, 0);
+            padding-top: 8px;
+            padding-bottom: 8px;
+        }
+
+        ul li::marker{
+            content:"@  ";
+            color:lightcyan; /*color inicial-irrelevante por la animación*/
+            animation: colorChange 2s infinite;
+        }
+
+        @keyframes colorChange{
+            0%{color:rgb(255, 84, 84);}
+            25%{color:rgb(252, 237, 69);}
+            50%{color:rgb(48, 244, 107);}
+            75%{color:rgb(100, 100, 248);}
+            100%{color:rgb(255, 95, 194);}
+        }
+
+        a{
+            color: rgb(255, 255, 255);
+            text-decoration: none;
+            font-size: 15px;
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color:rgb(0, 0, 0);
+            cursor:help;
+        }
+
+        a:hover{
+            color:rgb(0, 153, 255);
+            text-decoration: underline;
+        }
+    </style>
+
+</head>
+<body>
+    <ul>
+        <li><a href="https://www.youtube.com/">Youtube</a></li>
+        <li><a href="https://x.com/home">X</a></li>
+        <li><a href="https://www.twitch.tv/">Twitch</a></li>
+        <li><a href="https://www.crunchyroll.com/es/discover">Crunchyroll</a></li>
+        <li><a href="https://dle.rae.es/">Rae</a></li>
+    </ul>
+
+<hr>
+    <img src="https://faqszone.b-cdn.net/wp-content/uploads/2021/03/Perro-Que-es-caracteristicas-que-come-comportamiento-razas-taxonomia.jpg" alt="Perro" style="width:auto; height:100px">
+    <img src="https://static.misionesonline.news/wp-content/uploads/2020/04/01084907/gato-e1556582412929.jpg" alt="Gato" style="width:auto; height:100px">
+    <img src="https://tse4.mm.bing.net/th/id/OIP.8DGS9hvynL-8FdGUHLAjKgHaEO?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Pajaro" style="width:auto; height:100px">
+</body>
+</html>

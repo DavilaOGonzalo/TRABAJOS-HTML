@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body{
+            background-color: black;
+            padding: 8px;
+            margin: 0;
+        }
+
+        .r0{
+            position: relative;
+            width: 25%;
+            height: 42px;
+            background-color: rgb(0, 0, 0); /*rojo*/
+
+            float: left;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+
+        .b0{
+            position: absolute;
+            width: 42px;
+            height: 42px;
+            background-color: rgb(0, 0, 0); /*naranja*/
+
+            float: left;
+            left: 16px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo{
+            width: auto;
+            height: 33px;
+        }
+
+        /*--------------------------------------------------*/
+        .r1{
+            position: relative;
+            width: 48.942%;
+            height: 42px;
+            background-color: rgb(0, 0, 0); /*morado*/
+
+            float: left;
+            margin-bottom: 8px;
+
+        }
+
+        .b1{
+            position: absolute;
+            width: 42px;
+            height: 42px;
+            background-color: rgb(40, 40, 40); /*azul*/
+
+            left: 13%;
+            
+            border-radius: 50%;
+            
+        }
+
+        .b1:hover{
+            background-color:rgb(50, 50, 50);
+
+            border-top:1px solid rgb(255, 255, 255);
+            border-left:1px solid rgb(255, 255, 255);
+            border-bottom:1px solid rgb(255, 255, 255);
+            border-right:1px solid rgb(255, 255, 255);
+        }
+
+        .b2{
+            position: absolute;
+            width: calc(74% - 91px);
+            height: 42px;
+            background-color: rgb(40, 40, 40); /*amarillo*/
+
+            border-top-left-radius: 25px;
+            border-bottom-left-radius:25px;
+            border-top-right-radius: 25px;
+            border-bottom-right-radius: 25px;
+
+            right: calc(13% + 21px);
+            
+            z-index:1;
+        }
+
+        .b2:hover{
+            background-color:rgb(50, 50, 50);
+
+            border-top-left-radius: 25px;
+            border-bottom-left-radius:25px;
+            border-top-right-radius: 25px;
+            border-bottom-right-radius: 25px;
+
+            outline: 1px solid rgb(255, 255, 255);
+            outline: 1px solid rgb(255, 255, 255);
+        }
+
+        /*--------------------------------------------------*/
+        .r2{
+            position: relative;
+            width: 25%;
+            height: 42px;
+            background-color: rgb(0, 0, 0); /*morado*/    
+
+            float: right;
+            margin-left: 8px;
+            margin-bottom: 8px;
+        }
+
+        .perfil{
+            position: absolute;
+            width: 42px;
+            height: 42px;
+            background-color: #282828; /*celeste*/
+
+            right: 0;
+            border-radius: 50%;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .perfil-imagen{
+            width: auto;
+            height: 30px;
+
+            border-radius: 50%;
+        }
+
+        .social{
+            position: absolute;
+            width: 42px;
+            height: 42px;
+            background-color: #282828; /*celeste*/
+
+            right: 50px;
+            border-radius: 50%;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .novedades{
+            position: absolute;
+            width: 42px;
+            height: 42px;
+            background-color: #282828; /*celeste*/
+            
+            right: 100px;
+            border-radius: 50%;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .b4{
+            position: absolute;
+            width: calc(55% - 42px);
+            height: 42px;
+            background-color: rgb(40, 40, 40); /*verde*/
+
+            right: 150px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /*--------------------------------------------------*/
+        .cont1{
+            width: 25%;
+            height: 545px;
+            background-color: rgb(20, 20, 20); /*verde claro*/
+
+            float: left;
+            margin-right: 8px;
+            border-radius: 1%;
+        }
+
+        /*GRUPO 1*/
+        .fila1c{
+            width: 100%;
+            height: 70px;
+            background-color: rgb(20, 20, 20);
+            display: flex;
+            justify-content: space-between;
+
+            border-radius:15%;
+        }
+        .cont1-1{
+            width: 120px;
+            height: 40px;
+            background-color:rgb(20, 20, 20);
+
+            margin-top: 15px;
+            margin-left: 15px;
+        }
+        .cont1-2{
+            width: 80px;
+            height: 30px;
+            background-color:rgb(40, 40, 40);
+
+            margin-top: 15px;
+            margin-left: 80px;
+
+            border-top-left-radius: 25px;
+            border-bottom-left-radius:25px;
+            border-top-right-radius: 25px;
+            border-bottom-right-radius: 25px;
+
+            display:flex;
+            align-items: center;
+            justify-content: center;
+            gap:10px;
+
+            cursor:pointer;
+        }
+        .cont1-2:hover{
+            background-color:rgb(50, 50, 50);
+        }
+        .sim-c1-2{
+            color:white;
+            font-size:25px;
+        }
+        .le-c1-2{
+            color:white;
+            font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            font-weight: 500;
+            margin-bottom: 2px;
+            font-size: 14px;
+        }
+
+        .cont1-3{
+            width: 30px;
+            height: 30px;
+            background-color:rgb(20, 20, 20);
+
+            float: right;
+            margin-top:15px;
+            margin-right:15px;
+
+            border-radius: 50%;
+        }
+        .cont1-3:hover{
+            background-color:rgb(40, 40, 40);
+        }
+
+        /*GRUPO 2*/
+        .fila2c{
+            width: 100%;
+            height: 50px;
+            background-color:rgb(20, 20, 20);
+            display: flex;
+            gap:5px;
+            box-sizing:border-box;
+            padding-left:15px;
+        }
+        .cont1-4{
+            width: 75px;
+            height: 30px;
+            background-color:rgb(40, 40, 40);
+
+            border-top-left-radius: 25px;
+            border-bottom-left-radius:25px;
+            border-top-right-radius: 25px;
+            border-bottom-right-radius: 25px;
+
+            display:flex;
+            align-items: center;
+            justify-content: center;
+
+            cursor:pointer;
+        }
+
+        .cont1-4:hover{
+            background-color: rgb(50, 50, 50);
+        }
+
+        .le-c1-4{
+            color:white;
+            font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        /*GRUPO 3*/
+        .fila3c{
+            width: 100%;
+            height: 50px;
+            background-color:rgb(20, 20, 20);
+            display: flex;
+            justify-content: space-between;
+        }
+        .cont1-6{
+            width:40px;
+            height:40px;
+            background-color:rgb(20, 20, 20);
+
+            margin-left: 15px;
+
+            border-radius: 50%;
+        }
+        .cont1-6:hover{
+            background-color: #282828;
+        }
+
+        .cont1-7{
+            width:100px;
+            height:40px;
+            background-color:rgb(20, 20, 20);
+
+            margin-right:15px;
+        }
+
+        /*GRUPO 4*/
+        .fila4c{
+            width: 100%;
+            height: 365px;
+            background-color:rgb(20, 20, 20);
+
+            display:flex;
+            flex-direction: column;
+            align-items: center;
+
+            padding-top:5px;
+            overflow-y: scroll;
+            overflow-x: hidden;
+
+            /* Firefox 
+            scrollbar-width: thin;
+            scrollbar-color: #ffffff rgb(20, 20, 20);*/
+        }
+
+        .fila4c::-webkit-scrollbar{
+            width: 12px;
+            height: 10px;
+        }
+        .fila4c::-webkit-scrollbar-track{
+            background: rgb(20, 20, 20);
+        }
+        .fila4c::-webkit-scrollbar-thumb{
+            background:rgb(119, 119, 119);
+        }
+        .fila4c::-webkit-scrollbar-thumb:hover{
+            background: #bbbaba
+        }
+
+        .conts1-8{
+            width:350px;
+            height:70px;
+            background-color:rgb(20, 20, 20);
+
+            border-radius: 10px;
+
+            flex:0 0 auto;
+        }
+
+        .conts1-8:hover{
+            background-color: #282828;
+        }
+        
+        /*-------------------------------------------------*/
+
+        .cont2{
+            width: 48.942%;;
+            height: 545px;
+            background-color: rgb(40, 40, 40); /*rosa*/
+
+            float: left;
+            border-radius: 1%;
+        }
+
+        .cont3{
+            width: 25%;;
+            height: 545px;
+            background-color: rgb(40, 40, 40); /*rojo claro*/
+
+            float: right;
+            border-radius: 1%;
+        }
+
+        
+
+    
+        
+
+        
+
+
+        
+
+        
+
+
+
+    </style>
+</head>
+<body>
+    <div class="r0">
+        <div class="b0">
+            <img class="logo" src="/pngwing.com (21).png" alt="spotify-logo">
+        </div>
+    </div>
+
+    <div class="r1">
+        <div class="b1"></div>
+        <div class="b2"></div>
+        <div class="radius0"></div>
+        <div class="radius1"></div>
+    </div>
+    
+    <div class="r2">
+        <div class="perfil">
+            <img class="perfil-imagen" src="/pug-triste_crop1623966276407.jpeg" alt="perfil-imagen">
+        </div>
+
+        <div class="social">
+            <img class="perfil-imagen" src="#" alt="">
+        </div>
+
+        <div class="novedades">
+            <img class="perfil-imagen" src="#" alt="">
+        </div>
+        
+        <div class="b4">
+            <p class="instal"></p>
+        </div>
+    </div>
+
+    <div>
+        <div class="cont1">
+            <div class="fila1c">
+                <div class="cont1-1"></div>
+                <div class="cont1-2">
+                    <div class="sim-c1-2">+</div>
+                    <div class="le-c1-2">Crear</div>
+                </div>
+                <div class="cont1-3"></div>
+            </div>
+            <div class="fila2c">
+                <div class="cont1-4">
+                    <p class="le-c1-4">Playlists</p>
+                </div>
+                <div class="cont1-4">
+                    <p class="le-c1-4">Álbumes</p>
+                </div>
+            </div>
+            <div class="fila3c">
+                <div class="cont1-6"></div>
+                <div class="cont1-7"></div>
+            </div>
+            <div class="fila4c">
+                <div class="conts1-8"></div>
+                <div class="conts1-8"></div>
+                <div class="conts1-8"></div>
+                <div class="conts1-8"></div>
+                <div class="conts1-8"></div>
+                <div class="conts1-8"></div>
+                <div class="conts1-8"></div>
+                <div class="conts1-8"></div>
+                <div class="conts1-8"></div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="cont2"></div>
+    </div>
+    <div>
+        <div class="cont3"></div>
+    </div>
+</body>
+</html>
